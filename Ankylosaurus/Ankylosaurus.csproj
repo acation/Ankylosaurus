@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AE9AC5A1-AB56-4A6C-A173-8F75AC7D018E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ankylosaurus</RootNamespace>
+    <AssemblyName>Ankylosaurus</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="RhinoCommon">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Rhino 6\System\rhinocommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Grasshopper">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Rhino 6\Plug-ins\Grasshopper\Grasshopper.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GH_IO">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Rhino 6\Plug-ins\Grasshopper\GH_IO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnkylosaurusInfo.cs" />
+    <Compile Include="Panelize\GHC_DiamondsFromPoints.cs" />
+    <Compile Include="Panelize\GHC_DiamondSubD.cs" />
+    <Compile Include="MyAnkylosaurusIcon.cs" />
+    <Compile Include="Panelize\GHC_DiamondSubDNumeric.cs" />
+    <Compile Include="Panelize\GHC_QuadsFromPoints.cs" />
+    <Compile Include="Panelize\GHC_QuadSubdivideCurves.cs" />
+    <Compile Include="Panelize\GHC_QuadSubdivideNumeric.cs" />
+    <Compile Include="Panelize\GHC_QuadSubdividePoint.cs" />
+    <Compile Include="Panelize\GHC_QuadSubdivide.cs" />
+    <Compile Include="Panelize\GHC_StaggeredQuadNumericSubD.cs" />
+    <Compile Include="Panelize\GHC_StaggeredQuadSubD.cs" />
+    <Compile Include="Panelize\GHC__DivideSurface_Numeric.cs" />
+    <Compile Include="Panelize\PanDiamondUtil.cs" />
+    <Compile Include="Panelize\PanelUtility.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Util\GHC_QuadEdges.cs" />
+    <Compile Include="Util\GHC_SeparatePLineByDirection.cs" />
+    <Compile Include="Util\GHC_SeparateFacesByDirection.cs" />
+    <Compile Include="Util\GHC_SurfaceRationalize.cs" />
+    <Compile Include="Util\GHC_SurfaceSwapDirection.cs" />
+    <Compile Include="Util\GHC_UnifySrfByDirection.cs" />
+    <Compile Include="Util\GHC_UnifyUVsByGuide.cs" />
+    <Compile Include="Util\SrfDirectionUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ankylosaurus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AnkylosaurusSmallIcon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddGHC_NumSubDiv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddGHC_QuadSubDiv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddGHC_CrvSubDiv-03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddGHC_NumSubDiv-02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddGHC_QuadSubDiv-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddGHC_SRat-04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddGHC_SrfDirection-05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddGHC_SrfUnifyDirection-07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddGHC_SrfUnifyDirection-06.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Quad SubD Curves.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Quad SubD Numeric.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Quad SubD Points.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Quad SubD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Staggered SubD Numeric.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Staggered SubD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ankylosaurus Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ankylosaurus Logo_larger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Diamond SubD Numeric.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Diamond SubD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Quad SubD Points_V2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Quad SubD Curves_V2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Quad FROM Pts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Diamond FROM Pts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Divide Srf Numeric.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Util_UnifySrf Dir by Vector.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Util_Set Surface Direction.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Util_SrfRAT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Util_Seperate Segments by Direction.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Util_Seperate Faces by Direction.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ankylosaurus Logo_Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Util_UnifySrf Dir by Guide.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>Copy "$(TargetPath)" C:\Users\acation\AppData\Roaming\Grasshopper\Libraries\Ankylosaurus.gha"
+Erase "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <FallbackCulture>en-US</FallbackCulture>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartProgram>C:\Program Files\Rhino 6\System\Rhino.exe</StartProgram>
+    <StartArguments>
+    </StartArguments>
+    <StartAction>Program</StartAction>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+</Project>
