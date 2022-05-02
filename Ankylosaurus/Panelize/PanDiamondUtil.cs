@@ -28,13 +28,13 @@ namespace Ankylosaurus.Panelize
         /// <param name="iU"></param>
         /// <param name="iV"></param>
         /// <returns></returns>
-        public static Tuple<List<Brep>, List<Brep>> DiamondsFromPoints(List<Point3d> iPts, int iU, int iV)
+        public static Tuple<List<NurbsSurface>, List<NurbsSurface>> DiamondsFromPoints(List<Point3d> iPts, int iU, int iV)
         {
             // RETURNS A TUPLE WITH EMBEDDED LISTS FOR DIAMOND PANELS, AND FOR TRIANGLE PANELS
 
             // Create the surface panels. For each face, we need to obtain the indices of the four relevant vertices
-            List<Brep> diamondPanels = new List<Brep>();
-            List<Brep> trianglePanels = new List<Brep>();
+            List<NurbsSurface> diamondPanels = new List<NurbsSurface>();
+            List<NurbsSurface> trianglePanels = new List<NurbsSurface>();
 
             for (int u = 0; u < iU; u++)
             {
@@ -57,7 +57,7 @@ namespace Ankylosaurus.Panelize
                         // Top corner point
                         int v4 = GetPtIndex(u + 1, v + 1, iV);
 
-                        Brep panelSrf = Brep.CreateFromCornerPoints(iPts[v1], iPts[v2], iPts[v3], iPts[v4], 0.001);
+                        NurbsSurface panelSrf = NurbsSurface.CreateFromCorners(iPts[v1], iPts[v2], iPts[v3], iPts[v4]);
                         diamondPanels.Add(panelSrf);
                     }
                     // Get every other row, excluding points that only create triangular panels
@@ -74,7 +74,7 @@ namespace Ankylosaurus.Panelize
                         // Top corner point
                         int v4 = GetPtIndex(u + 1, v + 1, iV);
 
-                        Brep panelSrf = Brep.CreateFromCornerPoints(iPts[v1], iPts[v2], iPts[v3], iPts[v4], 0.001);
+                        NurbsSurface panelSrf = NurbsSurface.CreateFromCorners(iPts[v1], iPts[v2], iPts[v3], iPts[v4]);
                         diamondPanels.Add(panelSrf);
                     }
 
@@ -91,7 +91,7 @@ namespace Ankylosaurus.Panelize
                         // Top corner point
                         int v3 = GetPtIndex(u, v + 2, iV);
 
-                        Brep panelSrf = Brep.CreateFromCornerPoints(iPts[v1], iPts[v2], iPts[v3], iPts[v1], 0.001);
+                        NurbsSurface panelSrf = NurbsSurface.CreateFromCorners(iPts[v1], iPts[v2], iPts[v3], iPts[v1]);
                         trianglePanels.Add(panelSrf);
                     }
 
@@ -105,7 +105,7 @@ namespace Ankylosaurus.Panelize
                         // Top corner point
                         int v3 = GetPtIndex(u + 1, v + 1, iV);
 
-                        Brep panelSrf = Brep.CreateFromCornerPoints(iPts[v1], iPts[v2], iPts[v3], iPts[v1], 0.001);
+                        NurbsSurface panelSrf = NurbsSurface.CreateFromCorners(iPts[v1], iPts[v2], iPts[v3], iPts[v1]);
                         trianglePanels.Add(panelSrf);
                     }
 
@@ -125,7 +125,7 @@ namespace Ankylosaurus.Panelize
                             // bottom corner point
                             int v3 = GetPtIndex(u + 2, v + 1, iV);
 
-                            Brep panelSrf = Brep.CreateFromCornerPoints(iPts[v1], iPts[v2], iPts[v3], iPts[v1], 0.001);
+                            NurbsSurface panelSrf = NurbsSurface.CreateFromCorners(iPts[v1], iPts[v2], iPts[v3], iPts[v1]);
                             trianglePanels.Add(panelSrf);
                         }
 
@@ -139,7 +139,7 @@ namespace Ankylosaurus.Panelize
                             // "left" (or right) middle corner point
                             int v3 = GetPtIndex(u, v + 1, iV);
 
-                            Brep panelSrf = Brep.CreateFromCornerPoints(iPts[v1], iPts[v2], iPts[v3], iPts[v1], 0.001);
+                            NurbsSurface panelSrf = NurbsSurface.CreateFromCorners(iPts[v1], iPts[v2], iPts[v3], iPts[v1]);
                             trianglePanels.Add(panelSrf);
                         }
 
@@ -153,7 +153,7 @@ namespace Ankylosaurus.Panelize
                             // "left" (or right) middle corner point
                             int v3 = GetPtIndex(u + 1, v + 1, iV);
 
-                            Brep panelSrf = Brep.CreateFromCornerPoints(iPts[v1], iPts[v2], iPts[v3], iPts[v1], 0.001);
+                            NurbsSurface panelSrf = NurbsSurface.CreateFromCorners(iPts[v1], iPts[v2], iPts[v3], iPts[v1]);
                             trianglePanels.Add(panelSrf);
                         }
                     }
@@ -172,7 +172,7 @@ namespace Ankylosaurus.Panelize
                             // bottom corner point
                             int v3 = GetPtIndex(u + 2, v + 1, iV);
 
-                            Brep panelSrf = Brep.CreateFromCornerPoints(iPts[v1], iPts[v2], iPts[v3], iPts[v1], 0.001);
+                            NurbsSurface panelSrf = NurbsSurface.CreateFromCorners(iPts[v1], iPts[v2], iPts[v3], iPts[v1]);
                             trianglePanels.Add(panelSrf);
                         }
 
@@ -187,7 +187,7 @@ namespace Ankylosaurus.Panelize
                             // "left" (or right) middle corner point
                             int v3 = GetPtIndex(u + 1, v + 1, iV);
 
-                            Brep panelSrf = Brep.CreateFromCornerPoints(iPts[v1], iPts[v2], iPts[v3], iPts[v1], 0.001);
+                            NurbsSurface panelSrf = NurbsSurface.CreateFromCorners(iPts[v1], iPts[v2], iPts[v3], iPts[v1]);
                             trianglePanels.Add(panelSrf);
                         }
 
@@ -208,7 +208,7 @@ namespace Ankylosaurus.Panelize
                             // "left" (or right) middle corner point
                             int v3 = GetPtIndex(u + 1, v + 2, iV);
 
-                            Brep panelSrf = Brep.CreateFromCornerPoints(iPts[v1], iPts[v2], iPts[v3], iPts[v1], 0.001);
+                            NurbsSurface panelSrf = NurbsSurface.CreateFromCorners(iPts[v1], iPts[v2], iPts[v3], iPts[v1]);
                             trianglePanels.Add(panelSrf);
                         }
 
@@ -222,7 +222,7 @@ namespace Ankylosaurus.Panelize
                             // "left" (or right) middle corner point
                             int v3 = GetPtIndex(u + 1, v + 1, iV);
 
-                            Brep panelSrf = Brep.CreateFromCornerPoints(iPts[v1], iPts[v2], iPts[v3], iPts[v1], 0.001);
+                            NurbsSurface panelSrf = NurbsSurface.CreateFromCorners(iPts[v1], iPts[v2], iPts[v3], iPts[v1]);
                             trianglePanels.Add(panelSrf);
                         }
 
@@ -243,7 +243,7 @@ namespace Ankylosaurus.Panelize
                             // "left" (or right) middle corner point
                             int v3 = GetPtIndex(u + 1, v + 2, iV);
 
-                            Brep panelSrf = Brep.CreateFromCornerPoints(iPts[v1], iPts[v2], iPts[v3], iPts[v1], 0.001);
+                            NurbsSurface panelSrf = NurbsSurface.CreateFromCorners(iPts[v1], iPts[v2], iPts[v3], iPts[v1]);
                             trianglePanels.Add(panelSrf);
                         }
 
@@ -259,7 +259,7 @@ namespace Ankylosaurus.Panelize
                         // "left" (or right) middle corner point
                         int v3 = GetPtIndex(u, v + 1, iV);
 
-                        Brep panelSrf = Brep.CreateFromCornerPoints(iPts[v1], iPts[v2], iPts[v3], iPts[v1], 0.001);
+                        NurbsSurface panelSrf = NurbsSurface.CreateFromCorners(iPts[v1], iPts[v2], iPts[v3], iPts[v1]);
                         trianglePanels.Add(panelSrf);
                     }
 

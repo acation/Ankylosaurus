@@ -14,3 +14,11 @@ C:\Users\acation\Desktop\Ankylosaurus\Ankylosaurus_V0\Ankylosaurus\obj\Debug\Ank
 C:\Users\acation\Desktop\Ankylosaurus\Ankylosaurus_V0\Ankylosaurus\obj\Debug\Ankylosaurus.csproj.CoreCompileInputs.cache
 C:\Users\acation\Desktop\Ankylosaurus\Ankylosaurus_V0\Ankylosaurus\obj\Debug\Ankylosaurus.dll
 C:\Users\acation\Desktop\Ankylosaurus\Ankylosaurus_V0\Ankylosaurus\obj\Debug\Ankylosaurus.pdb
+c:\users\acation\OneDrive - Kohn Pedersen Fox Associates\My Documents\GitHub\Ankylosaurus\Ankylosaurus\bin\Ankylosaurus.dll
+c:\users\acation\OneDrive - Kohn Pedersen Fox Associates\My Documents\GitHub\Ankylosaurus\Ankylosaurus\bin\Ankylosaurus.pdb
+c:\users\acation\OneDrive - Kohn Pedersen Fox Associates\My Documents\GitHub\Ankylosaurus\Ankylosaurus\obj\Debug\Ankylosaurus.csproj.AssemblyReference.cache
+c:\users\acation\OneDrive - Kohn Pedersen Fox Associates\My Documents\GitHub\Ankylosaurus\Ankylosaurus\obj\Debug\Ankylosaurus.Properties.Resources.resources
+c:\users\acation\OneDrive - Kohn Pedersen Fox Associates\My Documents\GitHub\Ankylosaurus\Ankylosaurus\obj\Debug\Ankylosaurus.csproj.GenerateResource.cache
+c:\users\acation\OneDrive - Kohn Pedersen Fox Associates\My Documents\GitHub\Ankylosaurus\Ankylosaurus\obj\Debug\Ankylosaurus.csproj.CoreCompileInputs.cache
+c:\users\acation\OneDrive - Kohn Pedersen Fox Associates\My Documents\GitHub\Ankylosaurus\Ankylosaurus\obj\Debug\Ankylosaurus.dll
+c:\users\acation\OneDrive - Kohn Pedersen Fox Associates\My Documents\GitHub\Ankylosaurus\Ankylosaurus\obj\Debug\Ankylosaurus.pdb

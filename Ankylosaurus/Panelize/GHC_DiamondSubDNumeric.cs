@@ -72,9 +72,12 @@ namespace Ankylosaurus.Panelize
             }
 
             // Make the panels, get diamonds and triangles in a Tuple
-            Tuple<List<Brep>, List<Brep>> allPanels = DiamondsFromPoints(srfPoints, iU, iV);
+            Tuple<List<NurbsSurface>, List<NurbsSurface>> allPanels = DiamondsFromPoints(srfPoints, iU, iV);
 
-            List<GH_Brep> diamondPanels = new List<GH_Brep>();
+            DA.SetDataList(0, allPanels.Item1);
+            DA.SetDataList(1, allPanels.Item2);
+
+            /*List<GH_Brep> diamondPanels = new List<GH_Brep>();
             List<GH_Brep> trianglePanels = new List<GH_Brep>();
 
             // allPanels.Item1 are diamond panels && allPanels.Item2 are triangle panels
@@ -84,7 +87,7 @@ namespace Ankylosaurus.Panelize
                 trianglePanels.Add(new GH_Brep(triangle));
 
             DA.SetDataList(0, diamondPanels);
-            DA.SetDataList(1, trianglePanels);
+            DA.SetDataList(1, trianglePanels);*/
         }
 
         /// <summary>
