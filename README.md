@@ -2,4 +2,4 @@
 Grasshopper Plugin in C#
 By Alan Cation
 
-This is some cool stuff OKAY
+Subdivision tools in Grasshopper to subdivide surfaces by numeric ranges and input geometry
