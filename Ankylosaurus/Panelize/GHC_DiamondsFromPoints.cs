@@ -6,7 +6,6 @@ using Rhino.Geometry;
 
 using static Ankylosaurus.Panelize.PanelUtility;
 using static Ankylosaurus.Panelize.PanDiamondUtil;
-using Grasshopper.Kernel.Types;
 
 
 namespace Ankylosaurus.Panelize
