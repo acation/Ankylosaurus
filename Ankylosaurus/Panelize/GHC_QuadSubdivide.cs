@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
-using Grasshopper;
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
-using Rhino.Geometry.Intersect;
-using Grasshopper.Kernel.Data;
 
 namespace Ankylosaurus.Panelize
 {
