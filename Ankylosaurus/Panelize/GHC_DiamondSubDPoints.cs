@@ -3,36 +3,40 @@ using System.Collections.Generic;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
-
 using static Ankylosaurus.Panelize.PanelUtility;
 using static Ankylosaurus.Panelize.PanDiamondUtil;
-using Grasshopper.Kernel.Types;
 
 namespace Ankylosaurus.Panelize
 {
-    public class GHC_DiamondSubDNumeric : GH_Component
+    public class GHC_DiamondSubDPoints : GH_Component
     {
-        
-        public GHC_DiamondSubDNumeric()
-          : base("Diamond Subdivide - Numeric", "DiaNum",
-              "Make a diamond grid on a surface with 2 lists of numeric input values between 0 and 1",
+        /// <summary>
+        /// Initializes a new instance of the GHC_DiamondSubDPoints class.
+        /// </summary>
+        public GHC_DiamondSubDPoints()
+          : base("Diamond Subdivide - Points", "DiaPts",
+              "Make a diamond grid on a surface with 2 lists of intersection points",
               "Ankylosaurus", "Panelize")
         {
         }
 
-        
+        /// <summary>
+        /// Registers all the input parameters for this component.
+        /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddSurfaceParameter("Surface", "S", "Base surface", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Numbers U", "nU", "A dynamic list of U division parameters between 0 and 1", GH_ParamAccess.list);
-            pManager.AddNumberParameter("Numbers V", "nV", "A dynamic list of V division parameters between 0 and 1", GH_ParamAccess.list);
+            pManager.AddPointParameter("Intersection Points U", "ptU", "Intersection Points in U direction along surface edge", GH_ParamAccess.list);
+            pManager.AddPointParameter("Intersection Points V", "ptV", "Intersection Points in V direction along surface edge", GH_ParamAccess.list);
             pManager[1].Optional = true; pManager[2].Optional = true;
         }
 
-        
+        /// <summary>
+        /// Registers all the output parameters for this component.
+        /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddBrepParameter("Diamonds", "D", "Diamond panels", GH_ParamAccess.list);
+            pManager.AddSurfaceParameter("Surface Panels", "S", "Output dynamic panels", GH_ParamAccess.list);
             pManager.AddBrepParameter("Triangles", "T", "Triangular edge panels", GH_ParamAccess.list);
         }
 
@@ -42,32 +46,39 @@ namespace Ankylosaurus.Panelize
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            // Get the intersection UV values from the points
             Surface iSrf = null;
-            List<double> iUList = new List<double>();
-            List<double> iVList = new List<double>();
+            List<Point3d> iPtsU = new List<Point3d>();
+            List<Point3d> iPtsV = new List<Point3d>();
 
             DA.GetData(0, ref iSrf);
-            DA.GetDataList(1, iUList);
-            DA.GetDataList(2, iVList);
+            DA.GetDataList(1, iPtsU);
+            DA.GetDataList(2, iPtsV);
 
-            Surface iSurface = ReparameterizeSurface(iSrf);
-            Interval surfU = iSurface.Domain(0);
-            Interval surfV = iSurface.Domain(1);
+            ReparameterizeSurface(iSrf);
 
+            string u = "u"; string v = "v";
+            List<double> iNumberListU = GetSrfPointParameter(iSrf, iPtsU, u);
+            List<double> iNumberListV = GetSrfPointParameter(iSrf, iPtsV, v);
+
+            iNumberListU.Sort();
+            iNumberListV.Sort();
+
+            // Process the Diamond Panels
             // Create vertices for the panels
-            int iU = iUList.Count - 1;
-            int iV = iVList.Count - 1;
+            int iU = iNumberListU.Count - 1;
+            int iV = iNumberListV.Count - 1;
 
             List<Point3d> srfPoints = new List<Point3d>();
 
-            List<double> numberListU = iUList;
-            List<double> numberListV = iVList;
+            List<double> numberListU = iNumberListU;
+            List<double> numberListV = iNumberListV;
 
             for (int i = 0; i < numberListU.Count; i++)
             {
                 for (int j = 0; j < numberListV.Count; j++)
                 {
-                    Point3d srfPt = iSurface.PointAt(numberListU[i], numberListV[j]);
+                    Point3d srfPt = iSrf.PointAt(numberListU[i], numberListV[j]);
                     srfPoints.Add(srfPt);
                 }
             }
@@ -78,17 +89,6 @@ namespace Ankylosaurus.Panelize
             DA.SetDataList(0, allPanels.Item1);
             DA.SetDataList(1, allPanels.Item2);
 
-            /*List<GH_Brep> diamondPanels = new List<GH_Brep>();
-            List<GH_Brep> trianglePanels = new List<GH_Brep>();
-
-            // allPanels.Item1 are diamond panels && allPanels.Item2 are triangle panels
-            foreach (var diamond in allPanels.Item1)
-                diamondPanels.Add(new GH_Brep(diamond));
-            foreach (var triangle in allPanels.Item2)
-                trianglePanels.Add(new GH_Brep(triangle));
-
-            DA.SetDataList(0, diamondPanels);
-            DA.SetDataList(1, trianglePanels);*/
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Ankylosaurus.Panelize
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return Ankylosaurus.Properties.Resources.Diamond_SubD_Numeric;
+                return Ankylosaurus.Properties.Resources.Diamond_SubD_Points;
             }
         }
 
@@ -109,7 +109,7 @@ namespace Ankylosaurus.Panelize
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("f112b7fd-f978-42ec-993a-54d0582d42e2"); }
+            get { return new Guid("08CFA9A5-9ADB-452C-AB2C-88B2CE49D815"); }
         }
 
         public override GH_Exposure Exposure
@@ -119,6 +119,5 @@ namespace Ankylosaurus.Panelize
                 return GH_Exposure.tertiary;
             }
         }
-
     }
 }

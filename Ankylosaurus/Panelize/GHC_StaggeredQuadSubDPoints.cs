@@ -2,33 +2,38 @@
 using System.Collections.Generic;
 
 using Grasshopper.Kernel;
+using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using static Ankylosaurus.Panelize.PanelUtility;
-using Grasshopper.Kernel.Types;
 
 namespace Ankylosaurus.Panelize
 {
-    public class GHC_StaggeredQuadNumericSubD : GH_Component
+    public class GHC_StaggeredQuadSubDPoints : GH_Component
     {
-
-        public GHC_StaggeredQuadNumericSubD()
-          : base("Staggered Quad - Numeric", "NumStagSubD",
-              "Extract staggered isoparametric subsets of a surface dynamically based on U and V value list input",
+        /// <summary>
+        /// Initializes a new instance of the GHC_StaggeredQuadSubDPoints class.
+        /// </summary>
+        public GHC_StaggeredQuadSubDPoints()
+          : base("StaggeredQuad Subdivide - Points", "PtSDivStag",
+              "Extract a staggered isoparametric subset of a surface based on 2 lists of intersecting input points for U and V subdivision",
               "Ankylosaurus", "Panelize")
         {
         }
 
-
+        /// <summary>
+        /// Registers all the input parameters for this component.
+        /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddSurfaceParameter("Surface", "S", "Base surface", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Numbers U", "nU", "A dynamic list of U division parameters", GH_ParamAccess.list);
-            pManager.AddNumberParameter("Numbers V", "nV", "A dynamic list of V division parameters", GH_ParamAccess.list);
+            pManager.AddPointParameter("Intersection Points U", "ptU", "Intersection Points in U direction along surface edge", GH_ParamAccess.list);
+            pManager.AddPointParameter("Intersection Points V", "ptV", "Intersection Points in V direction along surface edge", GH_ParamAccess.list);
             pManager[1].Optional = true; pManager[2].Optional = true;
-            //pManager[1].CreateAttributes()
         }
 
-
+        /// <summary>
+        /// Registers all the output parameters for this component.
+        /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.AddSurfaceParameter("Surface Panels", "S", "Output dynamic panels", GH_ParamAccess.list);
@@ -41,15 +46,19 @@ namespace Ankylosaurus.Panelize
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             Surface iSrf = null;
-            List<double> iNumberListU = new List<double>();
-            List<double> iNumberListV = new List<double>();
-
-            /*iNumberListU.Add(0); iNumberListU.Add(0.25); iNumberListU.Add(0.5); iNumberListU.Add(0.75); iNumberListU.Add(1);
-            iNumberListV.Add(0); iNumberListV.Add(0.25); iNumberListV.Add(0.5); iNumberListV.Add(0.75); iNumberListV.Add(1);*/
+            List<Point3d> iPtsU = new List<Point3d>();
+            List<Point3d> iPtsV = new List<Point3d>();
 
             DA.GetData(0, ref iSrf);
-            DA.GetDataList(1, iNumberListU);
-            DA.GetDataList(2, iNumberListV);
+            DA.GetDataList(1, iPtsU);
+            DA.GetDataList(2, iPtsV);
+
+            ReparameterizeSurface(iSrf);
+
+            string u = "u"; string v = "v";
+            List<double> iNumberListU = GetSrfPointParameter(iSrf, iPtsU, u);
+            List<double> iNumberListV = GetSrfPointParameter(iSrf, iPtsV, v);
+
 
             // U is the staggered value
             // V is uniform
@@ -99,7 +108,7 @@ namespace Ankylosaurus.Panelize
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return Ankylosaurus.Properties.Resources.Staggered_SubD_Numeric;
+                return Ankylosaurus.Properties.Resources.Staggered_SubD_Points;
             }
         }
 
@@ -108,7 +117,7 @@ namespace Ankylosaurus.Panelize
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("6cb1a842-4284-493b-8b41-2be228004e9f"); }
+            get { return new Guid("17523AE1-093B-4682-9F7C-CD68D61118D1"); }
         }
 
         public override GH_Exposure Exposure

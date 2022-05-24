@@ -24,6 +24,7 @@ namespace Ankylosaurus.Panelize
 			pManager.AddSurfaceParameter("Surface", "S", "Base surface", GH_ParamAccess.item);
 			pManager.AddNumberParameter("Numbers U", "nU", "A dynamic list of U division parameters", GH_ParamAccess.list);
 			pManager.AddNumberParameter("Numbers V", "nV", "A dynamic list of V division parameters", GH_ParamAccess.list);
+			pManager[1].Optional = true; pManager[2].Optional = true;
 		}
 
 
