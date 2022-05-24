@@ -193,6 +193,16 @@ namespace Ankylosaurus.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Diamond_SubD_Points {
+            get {
+                object obj = ResourceManager.GetObject("Diamond_SubD_Points", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Divide_Srf_Numeric {
             get {
                 object obj = ResourceManager.GetObject("Divide_Srf_Numeric", resourceCulture);
@@ -286,6 +296,16 @@ namespace Ankylosaurus.Properties {
         internal static System.Drawing.Bitmap Staggered_SubD_Numeric {
             get {
                 object obj = ResourceManager.GetObject("Staggered_SubD_Numeric", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Staggered_SubD_Points {
+            get {
+                object obj = ResourceManager.GetObject("Staggered_SubD_Points", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

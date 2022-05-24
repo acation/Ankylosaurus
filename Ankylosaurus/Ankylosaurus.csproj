@@ -63,6 +63,7 @@
     <Compile Include="Panelize\GHC_DiamondSubD.cs" />
     <Compile Include="MyAnkylosaurusIcon.cs" />
     <Compile Include="Panelize\GHC_DiamondSubDNumeric.cs" />
+    <Compile Include="Panelize\GHC_DiamondSubDPoints.cs" />
     <Compile Include="Panelize\GHC_QuadsFromPoints.cs" />
     <Compile Include="Panelize\GHC_QuadSubdivideCurves.cs" />
     <Compile Include="Panelize\GHC_QuadSubdivideNumeric.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Panelize\GHC_QuadSubdivide.cs" />
     <Compile Include="Panelize\GHC_StaggeredQuadNumericSubD.cs" />
     <Compile Include="Panelize\GHC_StaggeredQuadSubD.cs" />
+    <Compile Include="Panelize\GHC_StaggeredQuadSubDPoints.cs" />
     <Compile Include="Panelize\GHC__DivideSurface_Numeric.cs" />
     <Compile Include="Panelize\PanDiamondUtil.cs" />
     <Compile Include="Panelize\PanelUtility.cs" />
@@ -192,6 +194,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Util_UnifySrf Dir by Guide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Staggered SubD Points.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Diamond SubD Points.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
