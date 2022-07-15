@@ -56,6 +56,7 @@ namespace Ankylosaurus.Util
 			NurbsSurface planarSrf = null;
 			if (iPlanar == true) { 
 
+
 				Point3d corner1 = rebuiltSrf.PointAt(0, 0);
 				Point3d corner2 = rebuiltSrf.PointAt(0, 1);
 				Point3d corner3 = rebuiltSrf.PointAt(1, 1);
