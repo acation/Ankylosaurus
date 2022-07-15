@@ -81,11 +81,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Util\GHC_BoxCutter.cs" />
     <Compile Include="Util\GHC_QuadEdges.cs" />
     <Compile Include="Util\GHC_SeparatePLineByDirection.cs" />
     <Compile Include="Util\GHC_SeparateFacesByDirection.cs" />
     <Compile Include="Util\GHC_SurfaceRationalize.cs" />
     <Compile Include="Util\GHC_SurfaceSwapDirection.cs" />
+    <Compile Include="Util\GHC_TrimPanels.cs" />
     <Compile Include="Util\GHC_UnifySrfByDirection.cs" />
     <Compile Include="Util\GHC_UnifyUVsByGuide.cs" />
     <Compile Include="Util\SrfDirectionUtility.cs" />
