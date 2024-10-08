@@ -42,7 +42,7 @@ namespace Ankylosaurus
 			get
 			{
 				//Return a string identifying you or your company.
-				return "";
+				return "Alan Cation";
 			}
 		}
 		public override string AuthorContact
