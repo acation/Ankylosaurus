@@ -84,6 +84,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Util\GHC_TrimPanels.cs" />
     <Compile Include="Util\GHC_QuadEdges.cs" />
     <Compile Include="Util\GHC_SeparatePLineByDirection.cs" />
     <Compile Include="Util\GHC_SeparateFacesByDirection.cs" />
