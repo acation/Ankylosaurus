@@ -27,6 +27,7 @@ namespace Ankylosaurus.Util
         {
             pManager.AddCurveParameter("Curve", "C", "The input curve", GH_ParamAccess.item);
             pManager.AddNumberParameter("Target Distance", "D", "The target distance to divide the curve into equal parts", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Cutoff Tolerance", "t", "Tolerance for the last segment's distance to reach.", GH_ParamAccess.item, 0.001);
         }
 
         /// <summary>
@@ -46,11 +47,13 @@ namespace Ankylosaurus.Util
             Curve iCrv = null;
             double iTargetDist = 0.0;
             int iSteps = 100;
+            double iTol = 0.0;
 
             DA.GetData("Curve", ref iCrv);
             DA.GetData("Target Distance", ref iTargetDist);
+            DA.GetData("Cutoff Tolerance", ref iTol);
 
-            Point3d[] pts = CrvDivisionUtility.DivideCurveByTargetDistance(iCrv, iTargetDist, iSteps);
+            Point3d[] pts = CrvDivisionUtility.DivideCurveByTargetDistance(iCrv, iTargetDist, iSteps, iTol);
             List<GH_Point> ghPts = new List<GH_Point>();
 
             foreach (Point3d pt in pts)

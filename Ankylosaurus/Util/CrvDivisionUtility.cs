@@ -10,16 +10,17 @@ namespace Ankylosaurus.Util
     public static class CrvDivisionUtility
     {
         // Divide Curve Equidistant
-        public static Point3d[] DivideCurveByTargetDistance(Curve iCrv, double iTargetDist, int iSteps)
+        public static Point3d[] DivideCurveByTargetDistance(Curve iCrv, double iTargetDist, int iSteps, double iTol)
         {
             double dist = iTargetDist;
 
             Point3d[] startPts = iCrv.DivideEquidistant(dist);
+            
             Point3d lastPt = startPts[startPts.Length - 1];
             Point3d crvEnd = iCrv.PointAtEnd;
             double leftover = crvEnd.DistanceTo(lastPt);
 
-            double cutoff = 0.001;
+            double cutoff = iTol;
 
             double inc = leftover / (startPts.Length + 2);
 
@@ -40,6 +41,7 @@ namespace Ankylosaurus.Util
 
                 inc = endDist / (pts.Length + 2);
             }
+
             return pts;
         }
 
