@@ -21,7 +21,7 @@ namespace Ankylosaurus.Panelize
         
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddPointParameter("Points", "P", "Input points to turn to diamond panels", GH_ParamAccess.list);
+            pManager.AddPointParameter("Points", "P", "Input points to turn to quad panels", GH_ParamAccess.list);
             pManager.AddIntegerParameter("U", "U", "U division parameter", GH_ParamAccess.item);
             pManager.AddIntegerParameter("V", "V", "V division parameter", GH_ParamAccess.item);
         }
