@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 
 using Grasshopper.Kernel;
@@ -16,7 +16,8 @@ namespace Ankylosaurus.Util
         public GHC_TrimPanels()
           : base("Trim Panels", "PTrim",
               "This component is useful if you are panelizing a trimmed surface, and would like for the panels to be trimmed as well. " +
-                "Keep in mind that the tolerance is comparing the distance of the panel center to the original surface and may need to be adjusted",
+                "Keep in mind that the tolerance is comparing the distance of the panel center to the original surface and may need to be adjusted. " +
+                "Keep in mind the trimming calculation itself uses the document tolerance.",
               "Ankylosaurus", "Util")
         {
         }
@@ -110,7 +111,7 @@ namespace Ankylosaurus.Util
                     trimmedPanels.Add(ghNewSrf);
                 }
             }
-
+            
             DA.SetDataList(0, trimmedPanels);
 
         }
@@ -136,4 +137,4 @@ namespace Ankylosaurus.Util
             get { return new Guid("63DCE3E2-6E78-49C7-A306-E5126757AB13"); }
         }
     }
-}
+}*/

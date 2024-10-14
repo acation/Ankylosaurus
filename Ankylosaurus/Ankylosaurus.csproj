@@ -62,6 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnkylosaurusInfo.cs" />
+    <Compile Include="Async\GH_AsyncComponent.cs" />
+    <Compile Include="Async\WorkerInstance.cs" />
     <Compile Include="Form\GHC_ModularRandomBox.cs" />
     <Compile Include="Form\GHC_ModularBox.cs" />
     <Compile Include="Panelize\GHC_DiamondsFromPoints.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Util\GHC_SeparateFacesByDirection.cs" />
     <Compile Include="Util\GHC_SurfaceRationalize.cs" />
     <Compile Include="Util\GHC_SurfaceSwapDirection.cs" />
+    <Compile Include="Util\GHC_TrimPanels_Async.cs" />
     <Compile Include="Util\GHC_UnifySrfByDirection.cs" />
     <Compile Include="Util\GHC_UnifyUVsByGuide.cs" />
     <Compile Include="Util\SrfDirectionUtility.cs" />
@@ -222,6 +225,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
