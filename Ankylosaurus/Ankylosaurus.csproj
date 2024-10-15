@@ -99,6 +99,7 @@
     <Compile Include="Util\GHC_SurfaceRationalize.cs" />
     <Compile Include="Util\GHC_SurfaceSwapDirection.cs" />
     <Compile Include="Util\GHC_TrimPanels_Async.cs" />
+    <Compile Include="Util\GHC_TrimPanels_AsyncOLD.cs" />
     <Compile Include="Util\GHC_UnifySrfByDirection.cs" />
     <Compile Include="Util\GHC_UnifyUVsByGuide.cs" />
     <Compile Include="Util\SrfDirectionUtility.cs" />

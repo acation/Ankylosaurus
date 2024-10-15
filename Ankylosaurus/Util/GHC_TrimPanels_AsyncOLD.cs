@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 
 using Grasshopper.Kernel;
@@ -12,18 +12,17 @@ using Rhino;
 
 namespace Ankylosaurus.Util
 {
-    public class GHC_TrimPanels_Async : GH_AsyncComponent
+    public class GHC_TrimPanels_AsyncOLD : GH_AsyncComponent
     {
         /// <summary>
         /// Initializes a new instance of the GHC_TrimPanels_Async class.
         /// </summary>
-        public GHC_TrimPanels_Async()
-          : base("Trim Panels", "PTrim",
-              "This component is useful if you are panelizing a trimmed surface, and would like for the panels to be trimmed as well. " +
-                "Keep in mind that the tolerance is comparing the distance of the split panel's center to the original surface and may need to be adjusted. " +
-                "The trimming calculation itself uses the document tolerance. The way that inclusion is determined is by offsetting the trim surface and testing" +
-                "for point inclusion within the thickened brep. This is what the inclusion distance is for.\n" +
-                "\nComponent uses Async adapted from: " +
+        public GHC_TrimPanels_AsyncOLD()
+          : base("OLD Trim Panels", "PTrimOLD",
+              "Don't use this crap. Use the other one. Kept only for files that use this, which this should be replaced with new one. " +
+                "This component is useful if you are panelizing a trimmed surface, and would like for the panels to be trimmed as well. " +
+                "Keep in mind that the tolerance is comparing the distance of the panel center to the original surface and may need to be adjusted. " +
+                "The trimming calculation itself uses the document tolerance. Component uses Async adapted from: " +
                 "https://github.com/specklesystems/GrasshopperAsyncComponent/blob/main/LICENSE",
               "Ankylosaurus", "Util")
         {
@@ -37,9 +36,8 @@ namespace Ankylosaurus.Util
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddBrepParameter("Trim Surface", "T", "This is the original trimmed surface you wish to compare the panels to.", GH_ParamAccess.item);
-            pManager.AddBrepParameter("Panels", "P", "These are the panels you wish to trim. The panels should ideally be derived from the trimming surface.", GH_ParamAccess.list);
-            pManager.AddNumberParameter("Inclusion Offset", "O", "This distance offsets the trim surface so that it can test that the split panels are within the surface bounds", GH_ParamAccess.item, 0.5);
-            pManager.AddNumberParameter("Tolerance", "t", "The distance tolerance for comparing the panels to original surface", GH_ParamAccess.item, 0.01);
+            pManager.AddBrepParameter("Panels", "P", "These are the panels you wish to trim. The panels should ideally be derived from the trimming surface.", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Tolerance", "t", "The distance tolerance for comparing the panels", GH_ParamAccess.item, 0.1);
         }
 
         /// <summary>
@@ -71,7 +69,9 @@ namespace Ankylosaurus.Util
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("D9707D01-CF94-4EE8-9698-EE1F163F5881"); }
+            // get { return new Guid("D9707D01-CF94-4EE8-9698-EE1F163F5881"); }
+            // Make it same as the old trim panels so old files won't mess up
+            get { return new Guid("63DCE3E2-6E78-49C7-A306-E5126757AB13"); }
         }
 
         // ADDS AN OVERRIDE TO "CANCEL" The operation if it is too slow - copy this into any async component
@@ -94,9 +94,8 @@ namespace Ankylosaurus.Util
             //NEED ACCESSIBLE GLOBAL VARIABLES / INPUTS AND OUTPUTS
             // GLOBAL INPUTS
             Brep iTrimSrf = null;
-            double iInclusionDist = 0.0;
             double iTol = 0;
-            List<Brep> iPanels = new List<Brep>();
+            Brep iPanel = null;
             // GLOBAL OUTPUTS
             List<GH_Brep> trimmedPanels = new List<GH_Brep>();
 
@@ -105,20 +104,17 @@ namespace Ankylosaurus.Util
             {
                 // INPUTS
                 Brep _iTrimSrf = null;
-                double _iInclusionDist = 0.0;
-                double _iTol = 0.0;
-                List<Brep> _iPanel = new List<Brep>();
+                double _iTol = 0;
+                Brep _iPanel = null;
 
                 DA.GetData(0, ref _iTrimSrf);
-                DA.GetDataList(1, _iPanel);
-                DA.GetData(2, ref _iInclusionDist);
-                DA.GetData(3, ref _iTol);
+                DA.GetData(1, ref _iPanel);
+                DA.GetData(2, ref _iTol);
 
                 // Set the input data to global variables
-                iTrimSrf = _iTrimSrf;
-                iInclusionDist = _iInclusionDist;
-                iTol = _iTol;
-                iPanels = _iPanel;
+                iTrimSrf = _iTrimSrf; 
+                iTol = _iTol; 
+                iPanel = _iPanel;
             }
 
             // The following is the replacement for Solve Instance - Do the Work Dummy
@@ -127,54 +123,67 @@ namespace Ankylosaurus.Util
                 // 👉 Checking for cancellation!
                 if (CancellationToken.IsCancellationRequested) { return; }
 
-                // COMPUTING LOGIC BELOW HERE
-                // CREATE A THICC SOLID TO CALCULATE INNER POINT INCLUSION
-                // Initialize useless 'out' walls to run command
-                Brep[] offsetBrepBlends = new Brep[0]; Brep[] brepWalls = new Brep[0];
-
-                // Offset first as a surface, then as a solid for both sides
-                Brep[] offsetBrep1 = Brep.CreateOffsetBrep(iTrimSrf, iInclusionDist, false, true, 0.01, out offsetBrepBlends, out brepWalls);
-                Brep[] cutterBoiz = Brep.CreateOffsetBrep(offsetBrep1[0], -(iInclusionDist * 2), true, true, 0.01, out offsetBrepBlends, out brepWalls);
-                Brep cutterBoi = cutterBoiz[0];
-
                 // BEGIN SPLIT OPERATION - SPLIT PANELS BY ORIGINAL SURFACE EDGES
                 var trimCrvs = iTrimSrf.DuplicateNakedEdgeCurves(true, false);
-                //List<Brep> splitPanels = new List<Brep>();
-                Double count = 0;
+                Brep splitBrep = iPanel.Faces[0].Split(trimCrvs, RhinoDoc.ActiveDoc.ModelAbsoluteTolerance);
+                // Create an empty list to store our new trimmed panels
+                // List<GH_Brep> trimmedPanels = new List<GH_Brep>();
+                List<double> centroidDists = new List<double>();
+                
 
-                foreach (Brep panel in iPanels)
+                for (int i = 0; i < splitBrep.Faces.Count; i++)
                 {
                     // 👉 Checking for cancellation!
                     if (CancellationToken.IsCancellationRequested) { return; }
 
-                    // SPLITTING OPERATION ON INDIVIDUAL PANELS
-                    // The curve splitting does not always succeed so perhaps we should revisit with BREP splitting...
-                    Brep splitBrep = panel.Faces[0].Split(trimCrvs, RhinoDoc.ActiveDoc.ModelAbsoluteTolerance);
-                    //Brep[] splitBrep = panel.Split(cutterBoi[0], iTol);
-                    for (int i = 0; i < splitBrep.Faces.Count; i++)
+                    // We first need to compare if the panel center is touching the trim surface
+                    //var newSrf = splitBrep.Faces[i].ToBrep();
+                    var newSrf = splitBrep.Faces[i].DuplicateFace(false);
+                    //Get split Surface Centroid using AreaMassProperties
+                    AreaMassProperties newSrfAreaProperties = AreaMassProperties.Compute(splitBrep.Faces[i]);
+                    //For the centroid, we need to actually pull the Area to the surface
+                    //using closest point, otherwise the point is not actually touching the surface geometry
+                    Point3d newSrfCentroid = newSrfAreaProperties.Centroid;
+                    Point3d newSrfCenter = newSrf.ClosestPoint(newSrfCentroid);
+                    // Pull the center point to the trimming surface
+                    Point3d comparePt = iTrimSrf.ClosestPoint(newSrfCenter);
+
+                    //Get the comparison distance for the center points
+                    double compareCenterDistance = newSrfCenter.DistanceTo(comparePt);
+                    centroidDists.Add(compareCenterDistance);
+
+                    // We also need to get the vertices of the split surfaces to make sure they all touch the original trimmed surface
+                    List<double> verticeDistance = new List<double>();
+                    Point3d[] vertices = newSrf.DuplicateVertices();
+
+                    // 👉 Checking for cancellation!
+                    if (CancellationToken.IsCancellationRequested) { return; }
+
+                    foreach (var vert in vertices)
                     {
-                        Brep newSrf = splitBrep.Faces[i].DuplicateFace(false);
-                        AreaMassProperties computeAreas = AreaMassProperties.Compute(newSrf);
-                        Point3d centerPt = computeAreas.Centroid;
-                        Point3d newCenterPt = newSrf.ClosestPoint(centerPt);
-
-                        bool isPtInside = cutterBoi.IsPointInside(newCenterPt, iTol, true);
-                        if (isPtInside)
-                        {
-                            Brep insideSrf = splitBrep.Faces[i].DuplicateFace(false);
-                            trimmedPanels.Add(new GH_Brep(insideSrf));
-                        }
+                        Point3d vertCompare = iTrimSrf.ClosestPoint(vert);
+                        double dist = vertCompare.DistanceTo(vert);
+                        verticeDistance.Add(dist);
                     }
-                    // This reports the progress of the 4 loop - should be in loop calculation
-                    ReportProgress(Id, count / (double)iPanels.Count);
-                    count++;
-                }
+                    //The average (or compare) vertex distance is how we compare the vertices to the trim surface
+                    double compareVertexDist = System.Linq.Enumerable.Average(verticeDistance);
+                    //averageDistances.Add(compareVertexDist);
 
+                    //NOW WE SEPARATE THE PANELS
+                    if (compareCenterDistance < iTol && compareVertexDist < iTol)
+                    {
+                        GH_Brep ghNewSrf = new GH_Brep(newSrf);
+                        trimmedPanels.Add(ghNewSrf);
+                    }
+
+                    // This reports the progress of the 4 loop
+                    //ReportProgress(Id, i / (double)splitBrep.Faces.Count);
+                }
                 // IMPORTANT NEED TO CALL DONE TO LET IT KNOW
                 Done();
-            }
+            }   
 
-
+            
 
             public override void SetData(IGH_DataAccess DA)
             {
@@ -188,4 +197,4 @@ namespace Ankylosaurus.Util
         }
 
     }
-}
+}*/
