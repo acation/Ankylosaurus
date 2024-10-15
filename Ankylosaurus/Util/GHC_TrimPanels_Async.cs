@@ -133,8 +133,10 @@ namespace Ankylosaurus.Util
                 Brep[] offsetBrepBlends = new Brep[0]; Brep[] brepWalls = new Brep[0];
 
                 // Offset first as a surface, then as a solid for both sides
-                Brep[] offsetBrep1 = Brep.CreateOffsetBrep(iTrimSrf, iInclusionDist, false, true, 0.01, out offsetBrepBlends, out brepWalls);
-                Brep[] cutterBoiz = Brep.CreateOffsetBrep(offsetBrep1[0], -(iInclusionDist * 2), true, true, 0.01, out offsetBrepBlends, out brepWalls);
+                Brep[] offsetBrep1 = Brep.CreateOffsetBrep(iTrimSrf, iInclusionDist, false, true, 
+                    RhinoDoc.ActiveDoc.ModelAbsoluteTolerance, out offsetBrepBlends, out brepWalls);
+                Brep[] cutterBoiz = Brep.CreateOffsetBrep(offsetBrep1[0], -(iInclusionDist * 2), true, true, 
+                    RhinoDoc.ActiveDoc.ModelAbsoluteTolerance, out offsetBrepBlends, out brepWalls);
                 Brep cutterBoi = cutterBoiz[0];
 
                 // BEGIN SPLIT OPERATION - SPLIT PANELS BY ORIGINAL SURFACE EDGES
