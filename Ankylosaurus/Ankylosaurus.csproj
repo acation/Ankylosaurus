@@ -67,6 +67,7 @@
     <Compile Include="Form\GHC_BrepCell_Async.cs" />
     <Compile Include="Form\GHC_ModularRandomBox.cs" />
     <Compile Include="Form\GHC_ModularBox.cs" />
+    <Compile Include="Form\GHC_VoxelizeGeometry.cs" />
     <Compile Include="Panelize\GHC_DiamondsFromPoints.cs" />
     <Compile Include="Panelize\GHC_DiamondSubD.cs" />
     <Compile Include="MyAnkylosaurusIcon.cs" />
