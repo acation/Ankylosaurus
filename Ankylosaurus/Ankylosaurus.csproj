@@ -229,7 +229,33 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Util_TrimPanels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Util_RandomNoRepeat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Util_CrvDivideTargetDistance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Util_SeparateCurves&amp;Lines.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Util_SortPointsByPlane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form_BrepCell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form_VoxelizeGeometry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form_RandomModularBox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form_ModularBox.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

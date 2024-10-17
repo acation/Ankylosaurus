@@ -63,76 +63,6 @@ namespace Ankylosaurus.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap AddGHC_CrvSubDiv_03 {
-            get {
-                object obj = ResourceManager.GetObject("AddGHC_CrvSubDiv_03", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap AddGHC_NumSubDiv_02 {
-            get {
-                object obj = ResourceManager.GetObject("AddGHC_NumSubDiv_02", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap AddGHC_QuadSubDiv_01 {
-            get {
-                object obj = ResourceManager.GetObject("AddGHC_QuadSubDiv_01", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap AddGHC_SRat_04 {
-            get {
-                object obj = ResourceManager.GetObject("AddGHC_SRat_04", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap AddGHC_SrfDirection_05 {
-            get {
-                object obj = ResourceManager.GetObject("AddGHC_SrfDirection_05", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap AddGHC_SrfUnifyDirection_06 {
-            get {
-                object obj = ResourceManager.GetObject("AddGHC_SrfUnifyDirection_06", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Ankylosaurus {
-            get {
-                object obj = ResourceManager.GetObject("Ankylosaurus", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Ankylosaurus_Logo {
             get {
                 object obj = ResourceManager.GetObject("Ankylosaurus_Logo", resourceCulture);
@@ -206,6 +136,46 @@ namespace Ankylosaurus.Properties {
         internal static System.Drawing.Bitmap Divide_Srf_Numeric {
             get {
                 object obj = ResourceManager.GetObject("Divide_Srf_Numeric", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Form_BrepCell {
+            get {
+                object obj = ResourceManager.GetObject("Form_BrepCell", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Form_ModularBox {
+            get {
+                object obj = ResourceManager.GetObject("Form_ModularBox", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Form_RandomModularBox {
+            get {
+                object obj = ResourceManager.GetObject("Form_RandomModularBox", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Form_VoxelizeGeometry {
+            get {
+                object obj = ResourceManager.GetObject("Form_VoxelizeGeometry", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -313,6 +283,36 @@ namespace Ankylosaurus.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Util_CrvDivideTargetDistance {
+            get {
+                object obj = ResourceManager.GetObject("Util_CrvDivideTargetDistance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Util_RandomNoRepeat {
+            get {
+                object obj = ResourceManager.GetObject("Util_RandomNoRepeat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Util_SeparateCurves_Lines {
+            get {
+                object obj = ResourceManager.GetObject("Util_SeparateCurves_Lines", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Util_Seperate_Faces_by_Direction {
             get {
                 object obj = ResourceManager.GetObject("Util_Seperate_Faces_by_Direction", resourceCulture);
@@ -343,9 +343,29 @@ namespace Ankylosaurus.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Util_SortPointsByPlane {
+            get {
+                object obj = ResourceManager.GetObject("Util_SortPointsByPlane", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Util_SrfRAT {
             get {
                 object obj = ResourceManager.GetObject("Util_SrfRAT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Util_TrimPanels {
+            get {
+                object obj = ResourceManager.GetObject("Util_TrimPanels", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
