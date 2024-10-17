@@ -94,6 +94,7 @@
     <Compile Include="Util\GHC_CrvDivideTargetDistance.cs" />
     <Compile Include="Util\GHC_RandomNoRepeat.cs" />
     <Compile Include="Util\GHC_SeparateCurves&amp;Lines.cs" />
+    <Compile Include="Util\GHC_SortPointsByPlane.cs" />
     <Compile Include="Util\GHC_TrimPanels.cs" />
     <Compile Include="Util\GHC_QuadEdges.cs" />
     <Compile Include="Util\GHC_SeparatePLineByDirection.cs" />
